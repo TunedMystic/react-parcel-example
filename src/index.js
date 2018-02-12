@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-
 import {
-	BrowserRouter as Router,
-	Route,
-	Link,
+  BrowserRouter as Router,
+  Route,
+  Link,
 } from 'react-router-dom'
 
+import './static/css/index.css';
+import logo from './static/img/logo.svg';
 
 // getComponent is a function that returns a promise for a component
 // It will not be called until the first mount
@@ -36,10 +36,10 @@ function asyncComponent(getComponent) {
 }
 
 const routes = [
-	{
-		path: '/home',
-		component: asyncComponent(() => import('./home').then(x => x.default))
-	},
+  {
+    path: '/home',
+    component: asyncComponent(() => import('./home').then(x => x.default))
+  },
   {
     path: '/',
     exact: true,
@@ -48,11 +48,14 @@ const routes = [
 ]
 
 const App = () => (
-  <Router>
-			<div>
-				{routes.map((route, i) => <Route key={i} {...route} />)}
-			</div>
-	</Router>
+  <div>
+    <img className="App-Logo" src={logo} alt="React Logo" />
+    <Router>
+      <div>
+        {routes.map((route, i) => <Route key={i} {...route} />)}
+      </div>
+    </Router>
+  </div>
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
